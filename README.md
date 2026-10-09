@@ -1,1 +1,7 @@
-# yassin-atta_58-2034_MET-01_task1
+# Task 1 — Inconsistencies and duplicates
+
+Name: Yassin Ahmed Atta
+ID: 58-2034
+
+# What I did:
+	The task started with 39 sign-ups. Faculty, club and city were written in many ways (13, 13 and 9 variants, such as “Pharma”, “Soccer”, “El Giza”, and “Music “ with a space after the word or trailing ), so I stripped spaces, lower-cased and collapsed double spaces, then mapped the remaining variants with a dictionary and asserted that only canonical values remained meaning one value grouping its variations.Names had extra spaces and mixed capitals, so I removed the spaces and used title case; emails were trimmed and turned lower-case. fee_paid had nine spellings (yes, Y, 1, N, false…), which I mapped to a boolean. signed_up_at mixed YYYY-MM-DD and DD/MM/YYYY; the slash format is day first because its first number is always 13–18 and its month always 09, so I parsed the two formats separately, each with a fixed pattern, and merged the results.The 3 rows from 39-36 were dropped when we removed the duplicates,and keeping one row per student and club dropped 4 more, leaving 32 rows by the end.I kept the latest submission because in all four repeats the earlier row was unpaid and the later one paid: students came back to pay their due fees.Order matters: removing duplicates before fixing club spellings finds only 2 of the 4, because “Music”/”music” and “Debate”/”debate club” look different, leaving 34 rows. Finally, two different students are named Mohamed Adel and even share an email, so I deduplicated on student_id and club, never on name or email, which kept them separate.
